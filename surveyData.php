@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
         $name = $_POST['userName'];
         $email = $_POST['userEmail'];
-        $dob = $_POST['userDob'];
+        $dob = $userdob->format('Y-m-d');
         $phone = $_POST['userContact'];
         $age = $userAge;
         $fav_food = implode(",", $_POST['foodType']);
@@ -41,12 +41,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $eat_out_rate = $_POST['eatOut'];
         $tv_rate = $_POST['watchTv'];
 
-        $sql = "INSERT INTO survey_users(fullname, email,phone, dob, age, fav_food, movies_rate, radio_rate, eat_out_rate, tv_rate)
-        VALUES ('$name', '$email', $phone,  '$dob', $age, '$fav_food', $movies_rate, $radio_rate, $eat_out_rate, $tv_rate)";
-        
-        $conn->close();
+        $myQuery = $conn->prepare("INSERT INTO survey_users (fullname, email, phone, dob, age, fav_food, movies_rate, radio_rate, eat_out_rate, tv_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $myQuery->bind_param("ssssisiiii", $name, $email, $phone, $dob, $age, $fav_food, $movies_rate, $radio_rate, $eat_out_rate, $tv_rate);
 
-        header("Location: index.php?success=Form submitted successfully!");
+        if ($myQuery->execute()) {
+            header("Location: index.php?success=Form submitted successfully!");
+        } else {
+            header("Location: index.php?error=Error, Failed to Update data to the database!!");
+        }
+
+        $stmt->close();
+        $conn->close();
         exit();
     }
 

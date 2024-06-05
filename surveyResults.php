@@ -191,8 +191,41 @@ if($result->num_rows > 0)
 
 
 } else
-{
-    echo "No Surveys Available";
+{?>
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Results</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<form >
+
+   <div class = "resultsContent">
+
+        <div class="heading">
+            <div class="left_heading">_Surveys</div>
+            <div class="right_heading">
+                <a href="index.php">FILL OUT SURVEY</a>
+                <a href="surveyResults.php">VIEW SURVEY RESULTS</a>
+            </div>
+        </div>
+
+        <div class = "resultsHeading">
+        <h1>Survey Results</h1>
+        </div>
+
+    </div>
+
+    <h3>No Surveys Available</h3>
+
+</form>
+    
+</body>
+</html>
+
+
+<?php
 }
 
 $conn->close();
