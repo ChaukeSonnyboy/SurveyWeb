@@ -11,8 +11,8 @@ Validations
 When a user submit the form the data must be stored into the database.
 When a user clicks on the "View Survey Results" they must see the following:
 
- -The Total number of surveys completed. This is just a count of the total number of rows in the database.
-- Average age of the people that participated in the surve.
+- The Total number of surveys completed. This is just a count of the total number of rows in the database.
+- Average age of the people that participated in the survey.
 - Oldest person that participated in the survey
 - Youngest person that participated in the survey.
 - Percentage of people who like Pizza is calculated by the number of people that like Pizza divided by the total number of surveys. Multiply by 100 to get the percentage. Present the result rounded off to 1 decimal place.
