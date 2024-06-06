@@ -1,7 +1,7 @@
 SurveyWeb is a web application that will be used to gather information from users regarding their favorite foods and their daily activities.
 
 A user must enter their personal details Name, Email, Date of birth and Contact number.
-A user must have to choose their favorite food between Pizza, Pasta, Pap and Wors, and Other.
+A user must choose their favorite food between Pizza, Pasta, Pap and Wors, and Other.
 A user must choose whether they agree or disagree on the daily activities in a scale from 1 to 5 with 1 being Strongly Agree, 2 Agree, 3 Neutral, 4 Disagree and 5 Strongly Disagree.
 
 Validations
