@@ -43,13 +43,13 @@
 
                 <div class="userInfo">
                     <label for="userName">Full Names</label><br>
-                    <input type="text" id="userName" name="userName" required><br>
+                    <input type="text" id="userName" name="userName"><br>
                     <label for="userEmail">Email</label><br>
-                    <input type="email" id="userEmail" name="userEmail" required><br>
+                    <input type="email" id="userEmail" name="userEmail"><br>
                     <label for="userDob">Date of Birth</label><br>
-                    <input type="date" id="userDob" name="userDob" required><br>
+                    <input type="date" id="userDob" name="userDob"><br>
                     <label for="userContact">Contact Number</label><br>
-                    <input type="tel" id="userContact" name="userContact" required><br>
+                    <input type="tel" id="userContact" name="userContact"><br>
                 </div>
 
             </div>
@@ -85,7 +85,7 @@
                     </tr>
                     <tr>
                         <td class="rateType">I like to watch movies</td>
-                        <td><input type="radio" name="wtchMovie" value="1" required></td>
+                        <td><input type="radio" name="wtchMovie" value="1"></td>
                         <td><input type="radio" name="wtchMovie" value="2"></td>
                         <td><input type="radio" name="wtchMovie" value="3"></td>
                         <td><input type="radio" name="wtchMovie" value="4"></td>
@@ -93,7 +93,7 @@
                     </tr>
                     <tr>
                         <td class="rateType">I like to listen to radio</td>
-                        <td><input type="radio" name="lstnRadio" value="1" required></td>
+                        <td><input type="radio" name="lstnRadio" value="1"></td>
                         <td><input type="radio" name="lstnRadio" value="2"></td>
                         <td><input type="radio" name="lstnRadio" value="3"></td>
                         <td><input type="radio" name="lstnRadio" value="4"></td>
@@ -101,7 +101,7 @@
                     </tr>
                     <tr>
                         <td class="rateType">I like to eat out</td>
-                        <td><input type="radio" name="eatOut" value="1" required></td>
+                        <td><input type="radio" name="eatOut" value="1"></td>
                         <td><input type="radio" name="eatOut" value="2"></td>
                         <td><input type="radio" name="eatOut" value="3"></td>
                         <td><input type="radio" name="eatOut" value="4"></td>
@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <td class="rateType">I like to watch TV</td>
-                        <td><input type="radio" name="watchTv" value="1" required></td>
+                        <td><input type="radio" name="watchTv" value="1"></td>
                         <td><input type="radio" name="watchTv" value="2"></td>
                         <td><input type="radio" name="watchTv" value="3"></td>
                         <td><input type="radio" name="watchTv" value="4"></td>
