@@ -1,4 +1,7 @@
 <?php
+
+include 'functions.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Calculate the user age form their date of birth
     $dob = $_POST['userDob'];
@@ -26,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        //Collect the user info
+        /*Collect the user info
         $name = $_POST['userName'];
         $email = $_POST['userEmail'];
         $dob = $userdob->format('Y-m-d');
@@ -37,7 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $movies_rate = $_POST['wtchMovie'];
         $radio_rate = $_POST['lstnRadio'];
         $eat_out_rate = $_POST['eatOut'];
-        $tv_rate = $_POST['watchTv'];
+        $tv_rate = $_POST['watchTv'];*/
+
+        validateData();
 
         //Insert the collected data into the database
         $myQuery = $conn->prepare("INSERT INTO survey_users (fullname, email, phone, dob, age, fav_food, movies_rate, radio_rate, eat_out_rate, tv_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
