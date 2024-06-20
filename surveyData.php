@@ -3,60 +3,60 @@
 include 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //Calculate the user age form their date of birth
-    $dob = $_POST['userDob'];
-    $userdob = new DateTime($dob);
-    $todaysDate = new DateTime();
-    $userAge = $todaysDate->diff($userdob)->y;
+    // Validate form data
+    $validationResult = validateData();
 
-    if ($userAge < 5 || $userAge > 120) //Validate the user age
-    {
-        header("Location: index.php?error=Your age must be greater than 5 and less than 120 to participate in this survey!!!");
-        exit();
-    } elseif (empty($_POST['foodType'])) //Validate that the user chose their favorite food
-    {
-        header("Location: index.php?error=Please select at least one favorite food.!");
-    } else {
+    if ($validationResult === true) {
+
+        // If validation succeeds, proceed to insert data into the database
 
         $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "survey_data";
 
-        $conn = new mysqli($servername, $username, $password, $dbname); //connect to the database
+        // Connect to the database
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        /*Collect the user info
-        $name = $_POST['userName'];
-        $email = $_POST['userEmail'];
-        $dob = $userdob->format('Y-m-d');
-        $phone = $_POST['userContact'];
-        $age = $userAge;
-        $fav_food = implode(",", $_POST['foodType']);
+        // Assign values from $_POST to variables
+        $name = cleanData($_POST["userName"]);
+        $email = cleanData($_POST["userEmail"]);
+        $phone = cleanData($_POST["userContact"]);
 
-        $movies_rate = $_POST['wtchMovie'];
-        $radio_rate = $_POST['lstnRadio'];
-        $eat_out_rate = $_POST['eatOut'];
-        $tv_rate = $_POST['watchTv'];*/
+        //date validation
+        $dob = $_POST["userDob"];
+        $age = calcAge();
+        $fav_food = cleanData(implode(",", $_POST['foodType']));
+        $movies_rate = cleanData($_POST["wtchMovie"]);
+        $radio_rate = cleanData($_POST["lstnRadio"]);
+        $eat_out_rate = cleanData($_POST["eatOut"]);
+        $tv_rate = cleanData($_POST["watchTv"]);
 
-        validateData();
+        // Prepare SQL statement for inserting data
+        $myQuery  = $conn->prepare("INSERT INTO survey_users (fullname, email, phone, dob, age, fav_food, movies_rate, radio_rate, eat_out_rate, tv_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        //Insert the collected data into the database
-        $myQuery = $conn->prepare("INSERT INTO survey_users (fullname, email, phone, dob, age, fav_food, movies_rate, radio_rate, eat_out_rate, tv_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        // Bind parameters to the prepared statement
         $myQuery->bind_param("ssssisiiii", $name, $email, $phone, $dob, $age, $fav_food, $movies_rate, $radio_rate, $eat_out_rate, $tv_rate);
 
-        //Confirm if the data is stored into the database
+        // Execute the statement to insert data
         if ($myQuery->execute()) {
             header("Location: index.php?success=Form submitted successfully!");
+            exit();
         } else {
-            header("Location: index.php?error=Error, Failed to Update data to the database!!");
+            header("Location: index.php?error=Error, Failed to update data to the database!!");
+            exit();
         }
 
-        $stmt->close();
+        // Close query and database connection
+        $myQuery->close();
         $conn->close();
+    } else {
+
+        header("Location: index.php?error=" . urlencode($validationResult));
         exit();
     }
 }

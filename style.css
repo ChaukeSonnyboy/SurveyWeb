@@ -136,7 +136,7 @@ button:hover {
 .error,
 .success {
     display: none;
-    background-color: #f44336;
+    background-color: red;
     color: white;
     padding: 8px;
     border-radius: 5px;
